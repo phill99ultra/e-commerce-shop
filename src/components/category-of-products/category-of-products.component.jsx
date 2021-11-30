@@ -5,8 +5,7 @@ import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
 import { CollectionsOverviewContainer } from './category-of-products.style';
 import ProductsList from '../products-list/products-list.component';
 
-const CategoryOfProducts = ({ collections }) => {
-    console.log(collections)
+const CategoryOfProducts = ({ collections }) => {  
     return(
         <CollectionsOverviewContainer>
             {
