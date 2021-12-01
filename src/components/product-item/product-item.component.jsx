@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { 
     CollectionItemContainer,
     BackgroundImage,
@@ -9,7 +9,9 @@ import {
     PriceContainer } from './product-item.style';
 import { addItem } from '../../redux/cart/cart.actions';
 
-const ProductItem = ({item, addItem}) => {
+const ProductItem = ({item}) => {
+    const dispatch = useDispatch();
+    const addItemClickHandler = item => dispatch(addItem(item))
     const { id, name, price, imageUrl } = item;
     return(
         <CollectionItemContainer key={id}>
@@ -22,15 +24,11 @@ const ProductItem = ({item, addItem}) => {
                 <NameContainer>{name}</NameContainer>
                 <PriceContainer>{price}</ PriceContainer>
             </CollectionFooterContainer>
-            <AddButton onClick={() => addItem(item)} inverted>
+            <AddButton onClick={() => addItemClickHandler(item)} inverted>
                 Add to cart
             </AddButton>
         </CollectionItemContainer>
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item))
-})
-
-export default connect(null, mapDispatchToProps)(ProductItem);
+export default ProductItem;
